@@ -24,5 +24,12 @@
 				Return all borrowed books by one member.
 			</action>
 		</release>
+
+    <release version="1.0" date="2022-06-09"
+             description="Be able to deliver a done increment">
+      <action dev="fuchsia" type="fix">
+        Book year validation for dates less than or equalr.
+      </action>
+    </release>
 	</body>
 </document>
