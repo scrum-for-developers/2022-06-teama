@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintValidatorContext;
 
+import java.time.LocalDate;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -12,37 +14,47 @@ import static org.mockito.Mockito.mock;
 
 class CurrentDateConstraintValidatorTest {
 
-  private ISBNConstraintValidator isbnConstraintValidator;
+  private CurrentDateValidator currentDateValidator;
 
   private ConstraintValidatorContext constraintValidatorContext;
 
   @BeforeEach
   public void setUp() throws Exception {
-    isbnConstraintValidator = new ISBNConstraintValidator();
+    currentDateValidator = new CurrentDateValidator();
     constraintValidatorContext = mock(ConstraintValidatorContext.class);
   }
 
   @Test
   void initializeShouldTakeIsbn() {
-    ISBN isbn = mock(ISBN.class);
-    assertDoesNotThrow(() -> isbnConstraintValidator.initialize(isbn));
+    CurrentDate currentDate = mock(CurrentDate.class);
+    assertDoesNotThrow(() -> currentDateValidator.initialize(currentDate));
   }
 
   @Test
   void shouldReturnTrueIfBlank() throws Exception {
-    boolean actual = isbnConstraintValidator.isValid("", constraintValidatorContext);
+    boolean actual = currentDateValidator.isValid("", constraintValidatorContext);
     assertTrue(actual);
   }
 
   @Test
-  void shouldReturnTrueIfValidISBN() throws Exception {
-    boolean actual = isbnConstraintValidator.isValid("0132350882", constraintValidatorContext);
+  void shouldReturnTrueIfYearIsEqualThanNow() throws Exception {
+    boolean actual = currentDateValidator.isValid(""+currentYear(), constraintValidatorContext);
     assertTrue(actual);
   }
 
   @Test
-  void shouldReturnFalseIfInvalidISBN() throws Exception {
-    boolean actual = isbnConstraintValidator.isValid("0123459789", constraintValidatorContext);
+  void shouldReturnTrueIfYearIsLessThanNow() throws Exception {
+    boolean actual = currentDateValidator.isValid(""+(currentYear()-1), constraintValidatorContext);
+    assertTrue(actual);
+  }
+
+  @Test
+  void shouldReturnFalseIfInvalidYear() throws Exception {
+    boolean actual = currentDateValidator.isValid(""+(currentYear()+1), constraintValidatorContext);
     assertFalse(actual);
+  }
+
+  private int currentYear(){
+    return LocalDate.now().getYear();
   }
 }
