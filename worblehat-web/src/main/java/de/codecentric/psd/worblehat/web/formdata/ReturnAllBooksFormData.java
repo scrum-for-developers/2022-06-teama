@@ -1,5 +1,7 @@
 package de.codecentric.psd.worblehat.web.formdata;
 
+import de.codecentric.psd.worblehat.web.validation.CustomEmail;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -7,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 public class ReturnAllBooksFormData {
 
   @NotEmpty(message = "{empty.returnAllBookFormData.emailAddress}")
-  @Email(message = "{notvalid.returnAllBookFormData.emailAddress}")
+  @CustomEmail(message = "{notvalid.returnAllBookFormData.emailAddress}")
   private String emailAddress;
 
   public String getEmailAddress() {
