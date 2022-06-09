@@ -13,31 +13,33 @@ class BookTest {
 
   @BeforeEach
   public void setup() {
-    BOOK = new Book("Titel", "Author", "2", "1", 1234);
+    BOOK = new Book("Titel", "Author", "2", "1", 1234, "Description");
   }
 
   @Test
-  void shouldReturnFalseWhenAuthorisDifferent() {
+  void shouldReturnFalseWhenAuthorIsDifferent() {
     Book anotherCopy =
         new Book(
             BOOK.getTitle(),
             BOOK.getAuthor(),
             BOOK.getEdition(),
             BOOK.getIsbn(),
-            BOOK.getYearOfPublication());
+            BOOK.getYearOfPublication(),
+            BOOK.getDescription());
     anotherCopy.setAuthor("Bene");
     assertThat(BOOK.isSameCopy(anotherCopy), is(false));
   }
 
   @Test
-  void shouldReturnFalseWhenTitleisDifferent() {
+  void shouldReturnFalseWhenTitleIsDifferent() {
     Book anotherCopy =
         new Book(
             BOOK.getTitle(),
             BOOK.getAuthor(),
             BOOK.getEdition(),
             BOOK.getIsbn(),
-            BOOK.getYearOfPublication());
+            BOOK.getYearOfPublication(),
+            BOOK.getDescription());
     anotherCopy.setTitle("Lord of the Rings");
     assertThat(BOOK.isSameCopy(anotherCopy), is(false));
   }
@@ -50,7 +52,8 @@ class BookTest {
             BOOK.getAuthor(),
             BOOK.getEdition(),
             BOOK.getIsbn(),
-            BOOK.getYearOfPublication());
+            BOOK.getYearOfPublication(),
+            BOOK.getDescription());
     anotherCopy.setEdition("2000");
     anotherCopy.setIsbn("123456789X");
     anotherCopy.setYearOfPublication(2010);
@@ -60,12 +63,13 @@ class BookTest {
   @Test
   void shouldReturnTrueWhenAllButTitleAndAuthorAndEditionAreDifferent() {
     Book anotherCopy =
-      new Book(
-        BOOK.getTitle(),
-        BOOK.getAuthor(),
-        BOOK.getEdition(),
-        BOOK.getIsbn(),
-        BOOK.getYearOfPublication());
+        new Book(
+            BOOK.getTitle(),
+            BOOK.getAuthor(),
+            BOOK.getEdition(),
+            BOOK.getIsbn(),
+            BOOK.getYearOfPublication(),
+            BOOK.getDescription());
     anotherCopy.setIsbn("123456789X");
     anotherCopy.setYearOfPublication(2010);
     assertThat(BOOK.isSameCopy(anotherCopy), is(true));
@@ -85,7 +89,7 @@ class BookTest {
   }
 
   @Test
-  void shouldReturnRelevatInfoInToString() {
+  void shouldReturnRelevantInfoInToString() {
     String borrowingAsString = BOOK.toString();
     assertThat(borrowingAsString, containsString("title"));
     assertThat(borrowingAsString, containsString("author"));

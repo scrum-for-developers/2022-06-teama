@@ -10,6 +10,7 @@ public enum PageElement {
   EDITION_ERROR("edition.error"),
   TITLE_ERROR("title.error"),
   YEAR_ERROR("yearOfPublication.error"),
+  DESCRIPTION_ERROR("description.error"),
   RETURNALLBOOKSBUTTON("returnAllBooks"),
   ERROR("error");
 
@@ -27,6 +28,8 @@ public enum PageElement {
         return PageElement.EDITION_ERROR;
       case "year":
         return PageElement.YEAR_ERROR;
+      case "description":
+        return PageElement.DESCRIPTION_ERROR;
       default:
         throw new IllegalArgumentException("Could not find error element for " + field);
     }

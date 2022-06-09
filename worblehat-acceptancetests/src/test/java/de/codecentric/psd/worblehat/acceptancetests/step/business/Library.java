@@ -10,7 +10,9 @@ import de.codecentric.psd.worblehat.domain.Book;
 import de.codecentric.psd.worblehat.domain.BookService;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+
 import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
@@ -38,37 +40,39 @@ public class Library {
   public void createLibraryWithSingleBookWithGivenIsbn(String isbns) {
     bookService.deleteAllBooks();
     doWithEach(
-        isbns,
-        (isbn) -> {
-          Book book = DemoBookFactory.createDemoBook().withISBN(isbn).build();
-          bookService
-              .createBook(
-                  book.getTitle(),
-                  book.getAuthor(),
-                  book.getEdition(),
-                  isbn,
-                  book.getYearOfPublication())
-              .orElseThrow(IllegalStateException::new);
-        });
+      isbns,
+      (isbn) -> {
+        Book book = DemoBookFactory.createDemoBook().withISBN(isbn).build();
+        bookService
+          .createBook(
+            book.getTitle(),
+            book.getAuthor(),
+            book.getEdition(),
+            isbn,
+            book.getYearOfPublication(),
+            book.getDescription())
+          .orElseThrow(IllegalStateException::new);
+      });
   }
 
   @Given("{string} has borrowed books {string}")
-  public void borrowerHasBorrowerdBooks(String borrower, String isbns) {
+  public void borrowerHasBorrowedBooks(String borrower, String isbns) {
     doWithEach(
-        isbns,
-        (isbn) -> {
-          Book book = DemoBookFactory.createDemoBook().withISBN(isbn).build();
-          bookService
-              .createBook(
-                  book.getTitle(),
-                  book.getAuthor(),
-                  book.getEdition(),
-                  isbn,
-                  book.getYearOfPublication())
-              .orElseThrow(IllegalStateException::new);
+      isbns,
+      (isbn) -> {
+        Book book = DemoBookFactory.createDemoBook().withISBN(isbn).build();
+        bookService
+          .createBook(
+            book.getTitle(),
+            book.getAuthor(),
+            book.getEdition(),
+            isbn,
+            book.getYearOfPublication(),
+            book.getDescription())
+          .orElseThrow(IllegalStateException::new);
 
-          bookService.borrowBook(book.getIsbn(), borrower);
-        });
+        bookService.borrowBook(book.getIsbn(), borrower);
+      });
   }
 
   // *****************

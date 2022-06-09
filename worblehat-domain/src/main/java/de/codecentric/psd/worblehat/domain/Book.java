@@ -1,5 +1,6 @@
 package de.codecentric.psd.worblehat.domain;
 
+import com.google.common.base.Strings;
 import java.io.Serializable;
 import javax.annotation.Nonnull;
 import javax.persistence.*;
@@ -21,6 +22,8 @@ public class Book implements Serializable {
   private String isbn;
   private int yearOfPublication;
 
+  private String description;
+
   @OneToOne(mappedBy = "borrowedBook", orphanRemoval = true)
   private Borrowing borrowing;
 
@@ -37,13 +40,15 @@ public class Book implements Serializable {
    * @param edition the edition
    * @param isbn the isbn
    * @param yearOfPublication the yearOfPublication
+   * @param description the description
    */
   public Book(
       @Nonnull String title,
       @Nonnull String author,
       @Nonnull String edition,
       @Nonnull String isbn,
-      int yearOfPublication) {
+      int yearOfPublication,
+      @Nonnull String description) {
     /*
      * === HINT ===
      * If you consider to add another parameter to this constructor, think about the consequences first.
@@ -57,6 +62,7 @@ public class Book implements Serializable {
     this.edition = edition;
     this.isbn = isbn;
     this.yearOfPublication = yearOfPublication;
+    this.description = Strings.emptyToNull(description);
   }
 
   public String getTitle() {
@@ -79,6 +85,10 @@ public class Book implements Serializable {
     return yearOfPublication;
   }
 
+  public String getDescription() {
+    return description;
+  }
+
   public void setTitle(String title) {
     this.title = title;
   }
@@ -99,12 +109,18 @@ public class Book implements Serializable {
     this.yearOfPublication = yearOfPublication;
   }
 
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   public Borrowing getBorrowing() {
     return borrowing;
   }
 
   boolean isSameCopy(@Nonnull Book book) {
-    return getTitle().equals(book.title) && getAuthor().equals(book.author) && getEdition().equals(book.edition);
+    return getTitle().equals(book.title)
+        && getAuthor().equals(book.author)
+        && getEdition().equals(book.edition);
   }
 
   public void borrowNowByBorrower(String borrowerEmailAddress) {
@@ -132,6 +148,8 @@ public class Book implements Serializable {
         + yearOfPublication
         + ", borrowing="
         + borrowing
+        + ", description="
+        + description
         + '}';
   }
 }

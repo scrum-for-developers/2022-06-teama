@@ -25,13 +25,15 @@ public class BookList {
     this.seleniumAdapter = seleniumAdapter;
   }
 
-  @Then("the booklist contains a book with {string}, {string}, {string}, {int} and {string}")
+  @Then(
+      "the booklist contains a book with {string}, {string}, {string}, {int}, {string} and {string}")
   public void bookListContainsRowWithValues(
       final String title,
       final String author,
       final String year,
       final Integer edition,
-      final String isbn) {
+      final String isbn,
+      final String description) {
     seleniumAdapter.gotoPage(Page.BOOKLIST);
     HtmlBookList htmlBookList = seleniumAdapter.getTableContent(PageElement.BOOKLIST);
     HtmlBook htmlBook = htmlBookList.getBookByIsbn(isbn);
@@ -40,6 +42,7 @@ public class BookList {
     assertThat(year, is(htmlBook.getYearOfPublication()));
     assertThat(edition, is(htmlBook.getEdition()));
     assertThat(isbn, is(htmlBook.getIsbn()));
+    assertThat(description, is(htmlBook.getDescription()));
   }
 
   @Then("the booklist shows that book with {string} as {string}")
