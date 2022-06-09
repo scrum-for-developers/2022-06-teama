@@ -2,6 +2,8 @@ package de.codecentric.psd.worblehat.web.validation;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import javax.validation.ConstraintValidatorContext;
 
@@ -33,23 +35,26 @@ class EmailConstraintValidatorTest {
     assertTrue(actual);
   }
 
-  @Test
-  void shouldReturnTrueIfValid() throws Exception {
+  @ParameterizedTest
+  @ValueSource(strings = {"test@test.de", "x@x.com"})
+  void shouldReturnTrueIfValid(String input) throws Exception {
     boolean actual =
-      customEmailConstraintValidator.isValid("test@test.de", constraintValidatorContext);
+      customEmailConstraintValidator.isValid(input, constraintValidatorContext);
     assertTrue(actual);
   }
 
-  @Test
-  void shouldReturnFalseIfNoDomain() throws Exception {
+  @ParameterizedTest
+  @ValueSource(strings = {"test@test", "test@", "test@test.", "@"})
+  void shouldReturnFalseIfNoDomain(String input) throws Exception {
     boolean actual =
-      customEmailConstraintValidator.isValid("test@test", constraintValidatorContext);
+      customEmailConstraintValidator.isValid(input, constraintValidatorContext);
     assertFalse(actual);
   }
 
-  @Test
-  void shouldReturnFalseIfNoAt() throws Exception {
-    boolean actual = customEmailConstraintValidator.isValid("test", constraintValidatorContext);
+  @ParameterizedTest
+  @ValueSource(strings = {"test", "test .de", ".de"})
+  void shouldReturnFalseIfNoAt(String input) throws Exception {
+    boolean actual = customEmailConstraintValidator.isValid(input, constraintValidatorContext);
     assertFalse(actual);
   }
 }
