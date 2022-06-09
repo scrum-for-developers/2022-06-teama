@@ -1,15 +1,14 @@
 package de.codecentric.psd.worblehat.web.validation;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import javax.validation.ConstraintValidatorContext;
-import java.time.LocalDate;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
+
+import java.time.LocalDate;
+import javax.validation.ConstraintValidatorContext;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class CurrentDateConstraintValidatorTest {
 
@@ -44,14 +43,14 @@ class CurrentDateConstraintValidatorTest {
   @Test
   void shouldReturnTrueIfYearIsLessThanNow() throws Exception {
     boolean actual =
-      currentDateValidator.isValid("" + (currentYear() - 1), constraintValidatorContext);
+        currentDateValidator.isValid("" + (currentYear() - 1), constraintValidatorContext);
     assertTrue(actual);
   }
 
   @Test
   void shouldReturnFalseIfInvalidYear() throws Exception {
     boolean actual =
-      currentDateValidator.isValid("" + (currentYear() + 1), constraintValidatorContext);
+        currentDateValidator.isValid("" + (currentYear() + 1), constraintValidatorContext);
     assertFalse(actual);
   }
 

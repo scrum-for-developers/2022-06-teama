@@ -3,7 +3,6 @@ package de.codecentric.psd.worblehat.web.formdata;
 import de.codecentric.psd.worblehat.web.validation.CurrentDate;
 import de.codecentric.psd.worblehat.web.validation.ISBN;
 import de.codecentric.psd.worblehat.web.validation.Numeric;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 

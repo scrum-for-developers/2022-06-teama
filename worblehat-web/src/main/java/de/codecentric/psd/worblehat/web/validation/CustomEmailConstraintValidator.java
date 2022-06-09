@@ -1,10 +1,9 @@
 package de.codecentric.psd.worblehat.web.validation;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.validator.routines.EmailValidator;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 
 public class CustomEmailConstraintValidator implements ConstraintValidator<CustomEmail, String> {
 
