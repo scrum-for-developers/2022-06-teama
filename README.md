@@ -13,7 +13,7 @@ Maven comes bundled with the maven wrapper scripts, no need for manual installat
 
 ## Running the application
 
-1. Compile and install the application in the local maven repository with `./mvnw install`
+1. Compile and install the application in the local maven repository with `./mvnw install` test
 2. Start the database:
   * The easiest way is to fire up a docker container with `./worblehat-web/docker-db.sh`.
   * **On Apple M1 Chips:** We switched from MySQL to MariaDB because it's a drop in replacement and in version 10.5 compatible with the new ARM Chips. Just execute `./worblehat-web/podman-db-on-m1.sh` (In addition podman is used instead of docker).
