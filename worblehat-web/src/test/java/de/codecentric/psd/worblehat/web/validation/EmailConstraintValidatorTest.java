@@ -35,13 +35,15 @@ class EmailConstraintValidatorTest {
 
   @Test
   void shouldReturnTrueIfValid() throws Exception {
-    boolean actual = customEmailConstraintValidator.isValid("test@test.de", constraintValidatorContext);
+    boolean actual =
+      customEmailConstraintValidator.isValid("test@test.de", constraintValidatorContext);
     assertTrue(actual);
   }
 
   @Test
   void shouldReturnFalseIfNoDomain() throws Exception {
-    boolean actual = customEmailConstraintValidator.isValid("test@test", constraintValidatorContext);
+    boolean actual =
+      customEmailConstraintValidator.isValid("test@test", constraintValidatorContext);
     assertFalse(actual);
   }
 

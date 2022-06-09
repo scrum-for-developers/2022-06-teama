@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintValidatorContext;
-
 import java.time.LocalDate;
 
 import static org.junit.Assert.assertFalse;
@@ -38,23 +37,25 @@ class CurrentDateConstraintValidatorTest {
 
   @Test
   void shouldReturnTrueIfYearIsEqualThanNow() throws Exception {
-    boolean actual = currentDateValidator.isValid(""+currentYear(), constraintValidatorContext);
+    boolean actual = currentDateValidator.isValid("" + currentYear(), constraintValidatorContext);
     assertTrue(actual);
   }
 
   @Test
   void shouldReturnTrueIfYearIsLessThanNow() throws Exception {
-    boolean actual = currentDateValidator.isValid(""+(currentYear()-1), constraintValidatorContext);
+    boolean actual =
+      currentDateValidator.isValid("" + (currentYear() - 1), constraintValidatorContext);
     assertTrue(actual);
   }
 
   @Test
   void shouldReturnFalseIfInvalidYear() throws Exception {
-    boolean actual = currentDateValidator.isValid(""+(currentYear()+1), constraintValidatorContext);
+    boolean actual =
+      currentDateValidator.isValid("" + (currentYear() + 1), constraintValidatorContext);
     assertFalse(actual);
   }
 
-  private int currentYear(){
+  private int currentYear() {
     return LocalDate.now().getYear();
   }
 }

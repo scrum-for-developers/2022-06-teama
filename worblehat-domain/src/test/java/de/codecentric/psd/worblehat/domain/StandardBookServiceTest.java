@@ -1,5 +1,14 @@
 package de.codecentric.psd.worblehat.domain;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.AdditionalAnswers;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mock;
+
+import java.time.LocalDate;
+import java.util.*;
+
 import static com.github.npathai.hamcrestopt.OptionalMatchers.isEmpty;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -8,14 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
-
-import java.time.LocalDate;
-import java.util.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.AdditionalAnswers;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 
 class StandardBookServiceTest {
 
@@ -69,12 +70,13 @@ class StandardBookServiceTest {
       }
       bookCopies.get(book.getIsbn()).add(book);
     }
-    // in case save is called on the repository, it should return something meaningful instead of null
+    // in case save is called on the repository, it should return something meaningful instead of
+    // null
     when(bookRepository.save(any())).thenAnswer(AdditionalAnswers.returnsFirstArg());
     for (Map.Entry<String, Set<Book>> entry : bookCopies.entrySet()) {
       when(bookRepository.findByIsbn(entry.getKey())).thenReturn(entry.getValue());
       when(bookRepository.findTopByIsbn(entry.getKey()))
-          .thenReturn(Optional.of(entry.getValue().iterator().next()));
+        .thenReturn(Optional.of(entry.getValue().iterator().next()));
     }
   }
 

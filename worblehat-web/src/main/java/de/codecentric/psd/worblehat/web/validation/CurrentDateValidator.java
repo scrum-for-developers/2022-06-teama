@@ -1,11 +1,9 @@
 package de.codecentric.psd.worblehat.web.validation;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.validator.routines.ISBNValidator;
-import org.checkerframework.checker.units.qual.Current;
-
 import java.time.LocalDate;
 
 public class CurrentDateValidator implements ConstraintValidator<CurrentDate, String> {

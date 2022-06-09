@@ -3,6 +3,7 @@ package de.codecentric.psd.worblehat.web.formdata;
 import de.codecentric.psd.worblehat.web.validation.CurrentDate;
 import de.codecentric.psd.worblehat.web.validation.ISBN;
 import de.codecentric.psd.worblehat.web.validation.Numeric;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
@@ -19,7 +20,7 @@ public class BookDataFormData {
   @NotEmpty(message = "{empty.bookDataFormData.yearOfPublication}")
   @Numeric(message = "{notvalid.bookDataFormData.yearOfPublication}")
   @Min(message = "{invalid.length.bookDataFormData.yearOfPublication}", value = 1000)
-  @CurrentDate(message ="{invalid.date.bookDataFormData.yearOfPublication}")
+  @CurrentDate(message = "{invalid.date.bookDataFormData.yearOfPublication}")
   private String yearOfPublication;
 
   @NotEmpty(message = "{empty.bookDataFormData.isbn}")

@@ -2,7 +2,7 @@ package de.codecentric.psd.worblehat.web.formdata;
 
 import de.codecentric.psd.worblehat.web.validation.CustomEmail;
 import de.codecentric.psd.worblehat.web.validation.ISBN;
-import javax.validation.constraints.Email;
+
 import javax.validation.constraints.NotEmpty;
 
 /** Form data object from the borrow view. */
