@@ -52,5 +52,12 @@
         WB-111 Buchbeschreibung.
       </action>
     </release>
+
+    <release version="1.4" date="2022-06-10"
+             description="Better Support for isbn">
+      <action dev="fuchsia" type="update">
+        WB-117 ISBN 13-stellig.
+      </action>
+    </release>
 	</body>
 </document>

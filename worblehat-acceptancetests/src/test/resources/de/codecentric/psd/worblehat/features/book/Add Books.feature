@@ -15,6 +15,7 @@ Feature: Adding a new book to the library
       | year        | 1989             |
       | isbn        | 123456789X       |
       | description | Es war einmal... |
+      | isbn        | 9781566199094    |
 
   Scenario: Adding books with special characters
 

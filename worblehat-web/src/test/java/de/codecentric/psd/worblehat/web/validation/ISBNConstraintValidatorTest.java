@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
 
 import javax.validation.ConstraintValidatorContext;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,14 +35,26 @@ class ISBNConstraintValidatorTest {
   }
 
   @Test
-  void shouldReturnTrueIfValidISBN() throws Exception {
+  void shouldReturnTrueIfValidISBN10() throws Exception {
     boolean actual = isbnConstraintValidator.isValid("0132350882", constraintValidatorContext);
     assertTrue(actual);
   }
 
   @Test
-  void shouldReturnFalseIfInvalidISBN() throws Exception {
+  void shouldReturnTrueIfValidISBN13() throws Exception {
+    boolean actual = isbnConstraintValidator.isValid("9781566199094", constraintValidatorContext);
+    assertTrue(actual);
+  }
+
+  @Test
+  void shouldReturnFalseIfInvalidISBN10() throws Exception {
     boolean actual = isbnConstraintValidator.isValid("0123459789", constraintValidatorContext);
+    assertFalse(actual);
+  }
+
+  @Test
+  void shouldReturnFalseIfInvalidISBN13() throws Exception {
+    boolean actual = isbnConstraintValidator.isValid("1111111111111", constraintValidatorContext);
     assertFalse(actual);
   }
 }

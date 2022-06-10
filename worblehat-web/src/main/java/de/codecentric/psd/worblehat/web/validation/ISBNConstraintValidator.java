@@ -2,6 +2,7 @@ package de.codecentric.psd.worblehat.web.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.ISBNValidator;
 
@@ -12,7 +13,7 @@ public class ISBNConstraintValidator implements ConstraintValidator<ISBN, String
     // Don't validate null, empty and blank strings, since these are validated by @NotNull,
     // @NotEmpty and @NotBlank
     if (StringUtils.isNotBlank(value)) {
-      return ISBNValidator.getInstance().isValidISBN10(value);
+      return ISBNValidator.getInstance().isValidISBN10(value) || ISBNValidator.getInstance().isValidISBN13(value);
     }
     return true;
   }
