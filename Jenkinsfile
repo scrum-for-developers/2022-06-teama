@@ -136,7 +136,7 @@ pipeline {
         branch 'master'
       }
       options {
-          timeout(time: 5, unit: 'MINUTES')
+          timeout(time: 15, unit: 'MINUTES')
       }
       steps {
         milestone(ordinal: 50, label: "PROD_APPROVAL_REACHED")
