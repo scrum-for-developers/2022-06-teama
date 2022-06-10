@@ -23,7 +23,7 @@
   <span id="yearOfPublication.error" class="error" th:if="${#fields.hasErrors('yearOfPublication')}"
         th:errors="*{yearOfPublication}"></span>
   <br/>
-  Description (optional):<input type="text" th:field="*{description}"/>
+  Description (optional):<textarea rows="4" cols="50" th:field="*{description}"></textarea>
   <span id="description.error" class="error" th:if="${#fields.hasErrors('description')}"
         th:errors="*{description}"></span>
   <br/>

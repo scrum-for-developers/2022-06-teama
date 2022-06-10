@@ -10,4 +10,5 @@
    See: https://docs.liquibase.com/concepts/basic/sql-format.html
    -->
   <include file="de/codecentric/psd/worblehat/liquibase-changesets/version-1.0/003-add-column-book-description.sql" />
+  <include file="de/codecentric/psd/worblehat/liquibase-changesets/version-1.0/004-description-as-lob.sql" />
 </databaseChangeLog>
